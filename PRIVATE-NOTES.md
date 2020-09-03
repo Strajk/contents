@@ -5,3 +5,6 @@ https://github.com/rollup/rollup-starter-lib
 - consistent formatting in examples
 - added webpack example
 - fixed encoding in examples ('â€¢' showing)
+
+TODO!!!
+- Remove dist
