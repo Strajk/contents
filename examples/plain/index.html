@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="./main.css">
+    <link rel="stylesheet" href="./../_common/main.css">
 
-    <script src="./../../dist/contents.js"></script>
+    <script src="./../../dist/index.umd.js"></script>
 
     <script>
     document.addEventListener('DOMContentLoaded', function () {
-        var contents = gajus.Contents();
+        var contents = Contents();
 
         document.querySelector('#contents').appendChild(contents.list());
     });

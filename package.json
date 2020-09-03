@@ -10,15 +10,17 @@
   },
   "description": "Table of contents generator.",
   "devDependencies": {
-    "@babel/cli": "^7.0.0",
-    "@babel/core": "^7.0.0",
+    "@babel/core": "^7.11.5",
     "@babel/preset-env": "^7.0.0",
-    "@babel/register": "^7.0.0",
+    "@rollup/plugin-babel": "^5.2.0",
+    "@rollup/plugin-commonjs": "^15.0.0",
+    "@rollup/plugin-node-resolve": "^9.0.0",
     "chai": "^4.1.2",
     "eslint-config-canonical": "^12.0.0",
     "gitdown": "^2.5.3",
     "jsdom": "^12.0.0",
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "rollup": "^2.26.9"
   },
   "keywords": [
     "table of contents",
@@ -26,14 +28,16 @@
     "contents"
   ],
   "license": "BSD-3-Clause",
-  "main": "./dist/index.js",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "browser": "dist/index.umd.js",
   "name": "contents",
   "repository": {
     "type": "git",
     "url": "http://github.com/gajus/contents.git"
   },
   "scripts": {
-    "build": "rm -fr ./dist && NODE_ENV=production babel ./src --out-dir ./dist --copy-files --source-maps",
+    "build": "NODE_ENV=production rollup -c",
     "generate-readme": "gitdown ./.README/README.md --output-file ./README.md",
     "lint": "eslint ./src",
     "test": "mocha --require @babel/register"

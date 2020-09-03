@@ -2,23 +2,6 @@
 <html>
 <head>
   <link rel="stylesheet" href="./../_common/main.css">
-
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/jquery-smooth-scroll@2.2.0/jquery.smooth-scroll.js"></script>
-
-  <script src="./../../dist/index.umd.js"></script>
-
-  <script>
-    $(function () {
-      var contents = Contents();
-
-      $('#contents').append(contents.list());
-
-      contents.eventEmitter().on('ready', function () {
-        $('a').smoothScroll();
-      });
-    });
-  </script>
 </head>
 <body>
 <main>
@@ -67,5 +50,6 @@
     <p>Etiam condimentum, risus eu hendrerit mattis, ipsum nisi aliquam ipsum, a venenatis purus ipsum sit amet lorem. Maecenas tempus dolor nec elit pharetra semper. Nullam id nibh blandit, viverra sem non, porttitor est. Vestibulum ac sollicitudin ligula. Aliquam erat volutpat. Donec id neque a erat sagittis tempus. Duis feugiat velit eget ligula egestas suscipit. Cras pharetra auctor vestibulum. Nullam et lorem eu mi fermentum dignissim. Sed interdum enim ac sem faucibus, non faucibus est placerat. Sed pharetra lorem sit amet augue feugiat auctor.</p>
   </article>
 </main>
+<script src="./dist/bundle.js"></script>
 </body>
 </html>

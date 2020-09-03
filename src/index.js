@@ -96,11 +96,11 @@ Contents.bind = (eventEmitter, list, config) => {
     eventEmitter.trigger('resize');
     eventEmitter.trigger('ready');
 
-    global.window.addEventListener('resize', Contents.throttle(() => {
+    window.addEventListener('resize', Contents.throttle(() => {
       eventEmitter.trigger('resize');
     }, 100));
 
-    global.window.addEventListener('scroll', Contents.throttle(() => {
+    window.addEventListener('scroll', Contents.throttle(() => {
       eventEmitter.trigger('scroll');
     }, 100));
   }, 10);
@@ -110,14 +110,14 @@ Contents.bind = (eventEmitter, list, config) => {
  * @return {number}
  */
 Contents.windowHeight = () => {
-  return global.innerHeight || global.document.documentElement.clientHeight;
+  return window.innerHeight || window.document.documentElement.clientHeight;
 };
 
 /**
  * @return {number}
  */
 Contents.windowScrollY = () => {
-  return global.pageYOffset || global.document.documentElement.scrollTop;
+  return window.pageYOffset || window.document.documentElement.scrollTop;
 };
 
 /**
@@ -143,13 +143,13 @@ Contents.config = (userConfig = {}) => {
   const defaultConfig = {
     articleId: Contents.articleId,
     articleName: Contents.articleName,
-    articles: global.document.querySelectorAll('h1, h2, h3, h4, h5, h6'),
+    articles: window.document.querySelectorAll('h1, h2, h3, h4, h5, h6'),
     link: Contents.link
   };
 
   const instanceConfig = _.assign({}, defaultConfig, userConfig);
 
-  if (!instanceConfig.articles.length || !(instanceConfig.articles[0] instanceof global.window.HTMLElement)) {
+  if (!instanceConfig.articles.length || !(instanceConfig.articles[0] instanceof window.HTMLElement)) {
     throw new Error('Option "articles" is not a collection of HTMLElement objects.');
   }
 
@@ -216,13 +216,13 @@ Contents.uniqueID = (inputId, existingIDs) => {
 
     existingIDs.push(assignedId);
   } else {
-    if (!global.document) {
+    if (!window.document) {
       throw new Error('No document context.');
     }
 
     assignedId = formattedId;
 
-    while (global.document.querySelector('#' + assignedId)) {
+    while (window.document.querySelector('#' + assignedId)) {
       assignedId = formattedId + '-' + i++;
     }
   }
@@ -368,10 +368,10 @@ Contents.tree.findParentNodeWithLevelLower = (needle, level, haystack) => {
  * @return {HTMLElement}
  */
 Contents.list = (tree, link) => {
-  const list = global.document.createElement('ol');
+  const list = window.document.createElement('ol');
 
   _.forEach(tree, (article) => {
-    const li = global.document.createElement('li');
+    const li = window.document.createElement('li');
 
     if (link) {
       link(li, article);
@@ -398,8 +398,8 @@ Contents.list = (tree, link) => {
  * @return {undefined}
  */
 Contents.link = (guide, article) => {
-  const guideLink = global.document.createElement('a');
-  const articleLink = global.document.createElement('a');
+  const guideLink = window.document.createElement('a');
+  const articleLink = window.document.createElement('a');
 
   article.element.id = article.id;
 
@@ -411,7 +411,7 @@ Contents.link = (guide, article) => {
 
   article.element.appendChild(articleLink);
 
-  guideLink.appendChild(global.document.createTextNode(article.name));
+  guideLink.appendChild(window.document.createTextNode(article.name));
   guideLink.href = '#' + article.id;
 
   guide.insertBefore(guideLink, guide.firstChild);
